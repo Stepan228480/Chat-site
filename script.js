@@ -1,82 +1,62 @@
-const sendButton = document.getElementById("send-button");
-const userInput = document.getElementById("user-input");
-const messagesDiv = document.getElementById("messages");
+const startBtn = document.getElementById('start-chat');
+const startScreen = document.getElementById('start-screen');
+const chatScreen = document.getElementById('chat-screen');
+const chatBox = document.getElementById('chat-box');
+const userInput = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
 
-sendButton.addEventListener("click", sendMessage);
+const messages = [
+  { sender: "Никита", text: "Привет!" },
+  { sender: "Никита", text: "Как дела?" },
+  { sender: "Вы", text: "Хорошо, а у вас как?" },
+  { sender: "Никита", text: "У меня тоже все отлично." },
+  { sender: "Богдан", text: "У меня тоже." },
+  { sender: "Аня", text: "У меня тоже!" },
+  { sender: "Вы", text: "Круто. А зачем мы все тут?" },
+  { sender: "Никита", text: "Да просто пришли погулять." },
+  { sender: "Аня", text: "Карнавал ведь!" },
+  { sender: "Богдан", text: "Но есть странное чувство..." },
+  { sender: "Вы", text: "Какое?" },
+  { sender: "Богдан", text: "Будто кто-то наблюдает." },
+  { sender: "Никита", text: "Эй, не пугай!" },
+  { sender: "Аня", text: "Мне уже страшно..." },
+  { sender: "Вы", text: "Может, это просто карнавал?" },
+  { sender: "Богдан", text: "Или что-то большее." },
+  { sender: "Никита", text: "Ты о чём?" },
+  { sender: "Богдан", text: "Некоторые люди... ведут себя неестественно." },
+  { sender: "Аня", text: "Как будто они не настоящие." },
+  { sender: "Вы", text: "Ненастоящие?" }
+];
 
-function sendMessage() {
-    const userMessage = userInput.value.trim();
+let msgIndex = 0;
 
-    if (userMessage === "") return; // Не отправлять пустые сообщения
+startBtn.addEventListener('click', () => {
+  startScreen.classList.add('hidden');
+  chatScreen.classList.remove('hidden');
+  showNextMessage();
+});
 
-    // Добавление сообщения пользователя в чат
-    const messageElement = document.createElement("div");
-    messageElement.classList.add("user-message");
-    messageElement.textContent = userMessage;
-    messagesDiv.appendChild(messageElement);
+sendBtn.addEventListener('click', () => {
+  if (msgIndex < messages.length) {
+    const msg = messages[msgIndex];
+    addMessage(msg.sender, msg.text);
+    msgIndex++;
+  }
+});
 
-    // Очистить поле ввода
-    userInput.value = "";
-
-    // Прокрутить чат вниз
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-    // Имитация ответа системы (персонажа)
-    setTimeout(() => {
-        const responseMessage = document.createElement("div");
-        responseMessage.classList.add("response-message");
-        responseMessage.textContent = getRandomResponse();
-        messagesDiv.appendChild(responseMessage);
-
-        // Прокрутить чат вниз
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }, 1000); // Ответ появится через 1 секунду
+function addMessage(sender, text) {
+  const messageEl = document.createElement('div');
+  messageEl.classList.add('message');
+  if (sender === "Вы") messageEl.classList.add('user');
+  messageEl.innerText = ${sender}: ${text};
+  chatBox.appendChild(messageEl);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function getRandomResponse() {
-    const responses = [
-        "Привет! Как дела?",
-        "Я загадочный персонаж!",
-        "Что ты хочешь узнать?",
-        "Я не могу всё рассказать сразу...",
-        "Осторожно! Это не простая история."
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
-}
-function startChat() {
-    // Скрыть предысторию и показать чат
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("chat").style.display = "block";
-
-    // Добавить первое сообщение от бота
-    addMessage("Привет, кто ты?", "bot");
-}
-
-function addMessage(text, sender) {
-    const messageContainer = document.getElementById("chat");
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("message", sender);
-    messageDiv.textContent = text;
-    messageContainer.appendChild(messageDiv);
-
-    // Прокрутить чат вниз, чтобы показать последнее сообщение
-    messageContainer.scrollTop = messageContainer.scrollHeight;
-}
-
-function sendMessage() {
-    const inputField = document.getElementById("inputField");
-    const message = inputField.value;
-
-    if (message) {
-        // Добавить сообщение пользователя в чат
-        addMessage(message, "user");
-
-        // Очистить поле ввода
-        inputField.value = "";
-
-        // Ответ от бота (можно будет дополнить логику с искусственным интеллектом)
-        setTimeout(() => {
-            addMessage("Интересно... расскажи больше.", "bot");
-        }, 1000);
-    }
+function showNextMessage() {
+  if (msgIndex < messages.length) {
+    const msg = messages[msgIndex];
+    addMessage(msg.sender, msg.text);
+    msgIndex++;
+  }
 }
