@@ -1,31 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Страшные переписки</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переписка</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Страшные переписки</h1>
-    </header>
-
-    <div class="chat">
-      <div class="messages">
-        <div class="message system">Привет, ты готов погрузиться в страшные истории?</div>
-      </div>
-      <div class="input">
-        <input type="text" id="messageInput" placeholder="Напиши сообщение..." />
-        <button onclick="sendMessage()">Отправить</button>
-      </div>
+    <div id="chat-container">
+        <h1>Переписка с персонажами</h1>
+        <div id="chat-box">
+            <div id="messages"></div>
+        </div>
+        <input type="text" id="user-input" placeholder="Напишите сообщение...">
+        <button id="send-button">Отправить</button>
     </div>
-    <div class="fullscreen">
-      <button onclick="toggleFullscreen()">Полноэкранный режим</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
