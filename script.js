@@ -50,3 +50,46 @@ document.getElementById('message-input').addEventListener('keydown', (event) => 
         aiResponse(event.target.value); // Реакция ИИ
     }
 });
+// Функция для добавления сообщения в чат
+function addMessageToChat(message, sender) {
+    const chat = document.getElementById('chat');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+    
+    const senderElement = document.createElement('span');
+    senderElement.classList.add('sender');
+    senderElement.textContent = sender;
+    
+    const messageText = document.createElement('span');
+    messageText.classList.add('message-text');
+    messageText.textContent = message;
+    
+    messageElement.appendChild(senderElement);
+    messageElement.appendChild(messageText);
+    
+    chat.appendChild(messageElement);
+    chat.scrollTop = chat.scrollHeight; // Прокрутка чата вниз
+}
+
+// Слушатель на кнопке "Отправить"
+document.getElementById('send-button').addEventListener('click', function() {
+    const inputField = document.getElementById('message-input');
+    const message = inputField.value.trim();
+    
+    if (message !== "") {
+        addMessageToChat(message, 'Ты');  // Добавляем сообщение
+        inputField.value = ""; // Очищаем поле ввода
+    }
+});// Функция для включения/выключения полноэкранного режима
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+}
+
+// Слушатель для кнопки полноэкранного режима
+document.getElementById('fullscreen-button').addEventListener('click', toggleFullScreen);
