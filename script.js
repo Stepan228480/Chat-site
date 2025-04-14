@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => { // Убедимся, что весь контент загружен перед работой с кнопками
+document.addEventListener("DOMContentLoaded", () => {
 
   const startButton = document.getElementById("start-chat");
   const chatScreen = document.getElementById("chat-screen");
