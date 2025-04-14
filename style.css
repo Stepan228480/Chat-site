@@ -1,98 +1,56 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+#chat-container {
+    width: 80%;
+    max-width: 600px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 20px;
+#chat-box {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
 }
 
-h1 {
-  font-size: 24px;
+#messages {
+    display: flex;
+    flex-direction: column;
 }
 
-.chat {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  height: 400px;
-}
-
-.messages {
-  flex-grow: 1;
-  overflow-y: auto;
-}
-
-.message {
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 8px;
-}
-
-.message.system {
-  background-color: #e0e0e0;
-  text-align: center;
-}
-
-.message.user {
-  background-color: #007bff;
-  color: white;
-  align-self: flex-end;
-}
-
-.input {
-  display: flex;
-  gap: 10px;
-}
-
-input {
-  flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+input[type="text"] {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-button:disabled {
-  background-color: #ccc;
-}
-
-.fullscreen {
-  text-align: center;
-  margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 10px;
-  }
-
-  .chat {
-    height: 300px;
-  }
+button:hover {
+    background-color: #45a049;
 }
