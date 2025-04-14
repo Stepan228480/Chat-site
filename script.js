@@ -1,95 +1,98 @@
-// Функция для добавления сообщений в чат
-function addMessageToChat(message, sender) {
-    const chat = document.getElementById('chat');
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    
-    const senderElement = document.createElement('span');
-    senderElement.classList.add('sender');
-    senderElement.textContent = sender;
-    
-    const messageText = document.createElement('span');
-    messageText.classList.add('message-text');
-    messageText.textContent = message;
-    
-    messageElement.appendChild(senderElement);
-    messageElement.appendChild(messageText);
-    
-    chat.appendChild(messageElement);
-    chat.scrollTop = chat.scrollHeight; // Прокрутка чата вниз
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// Функция для обработки ввода сообщения
-function handleMessageInput() {
-    const inputField = document.getElementById('message-input');
-    const message = inputField.value.trim();
-    
-    if (message !== "") {
-        addMessageToChat(message, 'Ты');
-        inputField.value = ""; // Очищаем поле ввода
-    }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
 }
 
-// Слушатель события на отправку сообщения
-document.getElementById('send-button').addEventListener('click', handleMessageInput);
-
-// Другая логика для ИИ-персонажей (здесь можно будет добавлять конкретные ответы)
-function aiResponse(message) {
-    // Пример, как можно отобразить ответ от ИИ
-    if (message.includes("привет")) {
-        addMessageToChat("Привет, как ты?", "AI");
-    } else {
-        addMessageToChat("Я не понял твоего сообщения.", "AI");
-    }
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-// В случае, если хочешь реализовать более сложную логику
-document.getElementById('message-input').addEventListener('keydown', (event) => {
-    if (event.key === "Enter") {
-        handleMessageInput();
-        aiResponse(event.target.value); // Реакция ИИ
-    }
-});
-// Функция для добавления сообщения в чат
-function addMessageToChat(message, sender) {
-    const chat = document.getElementById('chat');
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    
-    const senderElement = document.createElement('span');
-    senderElement.classList.add('sender');
-    senderElement.textContent = sender;
-    
-    const messageText = document.createElement('span');
-    messageText.classList.add('message-text');
-    messageText.textContent = message;
-    
-    messageElement.appendChild(senderElement);
-    messageElement.appendChild(messageText);
-    
-    chat.appendChild(messageElement);
-    chat.scrollTop = chat.scrollHeight; // Прокрутка чата вниз
+header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-// Слушатель на кнопке "Отправить"
-document.getElementById('send-button').addEventListener('click', function() {
-    const inputField = document.getElementById('message-input');
-    const message = inputField.value.trim();
-    
-    if (message !== "") {
-        addMessageToChat(message, 'Ты');  // Добавляем сообщение
-        inputField.value = ""; // Очищаем поле ввода
-    }
-});// Функция для включения/выключения полноэкранного режима
-function toggleFullScreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
-    }
+h1 {
+  font-size: 24px;
 }
 
-// Слушатель для кнопки полноэкранного режима
-document.getElementById('fullscreen-button').addEventListener('click', toggleFullScreen);
+.chat {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.message {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+}
+
+.message.system {
+  background-color: #e0e0e0;
+  text-align: center;
+}
+
+.message.user {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+.input {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+.fullscreen {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .chat {
+    height: 300px;
+  }
+}
