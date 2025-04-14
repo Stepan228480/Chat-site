@@ -43,3 +43,40 @@ function getRandomResponse() {
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 }
+function startChat() {
+    // Скрыть предысторию и показать чат
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("chat").style.display = "block";
+
+    // Добавить первое сообщение от бота
+    addMessage("Привет, кто ты?", "bot");
+}
+
+function addMessage(text, sender) {
+    const messageContainer = document.getElementById("chat");
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("message", sender);
+    messageDiv.textContent = text;
+    messageContainer.appendChild(messageDiv);
+
+    // Прокрутить чат вниз, чтобы показать последнее сообщение
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+}
+
+function sendMessage() {
+    const inputField = document.getElementById("inputField");
+    const message = inputField.value;
+
+    if (message) {
+        // Добавить сообщение пользователя в чат
+        addMessage(message, "user");
+
+        // Очистить поле ввода
+        inputField.value = "";
+
+        // Ответ от бота (можно будет дополнить логику с искусственным интеллектом)
+        setTimeout(() => {
+            addMessage("Интересно... расскажи больше.", "bot");
+        }, 1000);
+    }
+}
