@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Страшные переписки</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страшные переписки</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="start-screen">
-    <h1>Страшные переписки</h1>
-    <h2>Ненастоящие</h2>
-    <p>В городке Картики на карнавале собрались необычные люди, но кто-то здесь совсем не тот, за кого себя выдает.</p>
-    <button id="start-chat">Начать переписку</button>
-  </div>
 
-  <div id="chat-screen" class="hidden">
-    <div id="chat-box"></div>
-    <div id="input-area">
-      <input type="text" id="user-input" placeholder="Напишите сообщение..." />
-      <button id="send-btn">Отправить</button>
+    <div id="start-screen">
+        <h1>Страшные переписки</h1>
+        <h2>Город Картики. На карнавале собрались необычные люди, но кто-то здесь совсем не тот, за кого себя выдает...</h2>
+        <button id="start-chat">Начать переписку</button>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <div id="chat-screen" class="hidden">
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Введите сообщение...">
+        <button id="send-btn">Отправить</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
