@@ -1,49 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Переписка</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Страшные переписки — Ненастоящие</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="chat-container">
-        <h1>Переписка с персонажами</h1>
-        <div id="chat-box">
-            <div id="messages"></div>
-        </div>
-        <input type="text" id="user-input" placeholder="Напишите сообщение...">
-        <button id="send-button">Отправить</button>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страшная История</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Предыстория -->
-    <div id="intro" style="display: block;">
-        <p>В городке Картиге на карнавале собрались необычные люди. Но кто-то тут не такой, как все...</p>
-        <button onclick="startChat()">Начать переписку</button>
-    </div>
+  <div id="start-screen">
+    <h1>Страшные переписки</h1>
+    <h2>«Ненастоящие»</h2>
+    <p>В городке Картики на карнавале собрались необычные люди. Но кто-то здесь... совсем не тот, за кого себя выдаёт.</p>
+    <button id="start-chat">Начать переписку</button>
+  </div>
 
-    <!-- Переписка -->
-    <div id="chat" style="display: none;">
-        <div class="message bot">Привет, кто ты?</div>
+  <div id="chat-screen" class="hidden">
+    <div class="chat-header">Страшные переписки</div>
+    <div id="chat-box"></div>
+    <div class="input-box">
+      <input type="text" id="user-input" placeholder="Напишите сообщение..." />
+      <button id="send-btn">Отправить</button>
     </div>
+  </div>
 
-    <!-- Ввод сообщения -->
-    <div id="messageInput">
-        <input type="text" id="inputField" placeholder="Напишите сообщение...">
-        <button onclick="sendMessage()">Отправить</button>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
