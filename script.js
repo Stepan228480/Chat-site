@@ -1,55 +1,42 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.getElementById("startChatButton").addEventListener("click", function() {
+  // Скрыть кнопку и показать окно чата
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("chatWindow").style.display = "block";
 
-  const startButton = document.getElementById("start-chat");
-  const chatScreen = document.getElementById("chat-screen");
-  const startScreen = document.getElementById("start-screen");
-  const chatBox = document.getElementById("chat-box");
-  const userInput = document.getElementById("user-input");
-  const sendBtn = document.getElementById("send-btn");
+  // Заполнить окно чата заготовленными сообщениями
+  const chatContent = document.getElementById("chatContent");
 
-  let messageIndex = 0;
-
-  const messages = [
-    { name: "Никита", text: "Привет, как дела?" },
-    { name: "Вы", text: "Хорошо. А у вас как?" },
-    { name: "Никита", text: "У меня тоже всё отлично!" },
-    { name: "Аня", text: "У меня тоже, мы тут немного волнуемся..." },
-    { name: "Богдан", text: "Хмм, здесь как-то странно, вы это чувствуете?" },
-    { name: "Вы", text: "Да, тут действительно что-то не так..." },
-    { name: "Аня", text: "Вы тоже это чувствуете?" },
-    { name: "Никита", text: "Может просто карнавал такой странный?" },
-    { name: "Богдан", text: "Нет... Я думаю, это не просто так." },
-    { name: "Вы", text: "Что ты имеешь в виду?" },
-    { name: "Богдан", text: "Позже объясню. Пока просто наблюдай." }
+  // Диалог
+  const dialog = [
+    "Привет, как у вас дела?",
+    "У меня отлично, а у вас как?",
+    "У меня тоже все отлично!",
+    "Мы тут немного волнуемся.",
+    "Здесь как-то странно вы это чувствуете?",
+    "Да, тут действительно что-то не так.",
+    "Вы тоже это чувствуете?",
+    "Может, просто карнавал такой странный?",
+    "Нет, я думаю, это не просто так.",
+    "Что я имею в виду, позже объясню, пока просто наблюдаю."
   ];
 
-  function showNextMessage() {
-    if (messageIndex < messages.length) {
-      const msg = messages[messageIndex];
-      const div = document.createElement("div");
-      div.textContent = ${msg.name}: ${msg.text};
-      chatBox.appendChild(div);
-      chatBox.scrollTop = chatBox.scrollHeight;
-      messageIndex++;
-    }
+  // Добавление сообщений в чат
+  dialog.forEach(msg => {
+    const div = document.createElement("div");
+    div.textContent = msg;
+    chatContent.appendChild(div);
+  });
+});
+
+// Отправка сообщения
+document.getElementById("sendMessageButton").addEventListener("click", function() {
+  const userMessage = document.getElementById("userMessage").value;
+  if (userMessage.trim() !== "") {
+    const div = document.createElement("div");
+    div.textContent = "Вы: " + userMessage;
+    document.getElementById("chatContent").appendChild(div);
+
+    // Очистить поле ввода
+    document.getElementById("userMessage").value = "";
   }
-
-  sendBtn.addEventListener("click", () => {
-    const text = userInput.value.trim();
-    if (text !== "") {
-      const userMsg = document.createElement("div");
-      userMsg.textContent = Вы: ${text};
-      chatBox.appendChild(userMsg);
-      userInput.value = "";
-      chatBox.scrollTop = chatBox.scrollHeight;
-      setTimeout(showNextMessage, 800);
-    }
-  });
-
-  startButton.addEventListener("click", () => {
-    startScreen.classList.add("hidden");
-    chatScreen.classList.remove("hidden");
-    setTimeout(showNextMessage, 500);
-  });
-
 });
