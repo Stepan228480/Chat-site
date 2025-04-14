@@ -1,62 +1,51 @@
-const startBtn = document.getElementById('start-chat');
-const startScreen = document.getElementById('start-screen');
-const chatScreen = document.getElementById('chat-screen');
-const chatBox = document.getElementById('chat-box');
-const userInput = document.getElementById('user-input');
-const sendBtn = document.getElementById('send-btn');
+const startButton = document.getElementById("start-chat");
+const chatScreen = document.getElementById("chat-screen");
+const startScreen = document.getElementById("start-screen");
+const chatBox = document.getElementById("chat-box");
+const userInput = document.getElementById("user-input");
+const sendBtn = document.getElementById("send-btn");
+
+let messageIndex = 0;
 
 const messages = [
-  { sender: "Никита", text: "Привет!" },
-  { sender: "Никита", text: "Как дела?" },
-  { sender: "Вы", text: "Хорошо, а у вас как?" },
-  { sender: "Никита", text: "У меня тоже все отлично." },
-  { sender: "Богдан", text: "У меня тоже." },
-  { sender: "Аня", text: "У меня тоже!" },
-  { sender: "Вы", text: "Круто. А зачем мы все тут?" },
-  { sender: "Никита", text: "Да просто пришли погулять." },
-  { sender: "Аня", text: "Карнавал ведь!" },
-  { sender: "Богдан", text: "Но есть странное чувство..." },
-  { sender: "Вы", text: "Какое?" },
-  { sender: "Богдан", text: "Будто кто-то наблюдает." },
-  { sender: "Никита", text: "Эй, не пугай!" },
-  { sender: "Аня", text: "Мне уже страшно..." },
-  { sender: "Вы", text: "Может, это просто карнавал?" },
-  { sender: "Богдан", text: "Или что-то большее." },
-  { sender: "Никита", text: "Ты о чём?" },
-  { sender: "Богдан", text: "Некоторые люди... ведут себя неестественно." },
-  { sender: "Аня", text: "Как будто они не настоящие." },
-  { sender: "Вы", text: "Ненастоящие?" }
+  { name: "Никита", text: "Привет, как дела?" },
+  { name: "Вы", text: "Хорошо. А у вас как?" },
+  { name: "Никита", text: "У меня тоже всё отлично!" },
+  { name: "Аня", text: "У меня тоже, мы тут немного волнуемся..." },
+  { name: "Богдан", text: "Хмм, здесь как-то странно, вы это чувствуете?" },
+  { name: "Вы", text: "Да, тут действительно что-то не так..." },
+  { name: "Аня", text: "Вы тоже это чувствуете?" },
+  { name: "Никита", text: "Может просто карнавал такой странный?" },
+  { name: "Богдан", text: "Нет... Я думаю, это не просто так." },
+  { name: "Вы", text: "Что ты имеешь в виду?" },
+  { name: "Богдан", text: "Позже объясню. Пока просто наблюдай." }
 ];
 
-let msgIndex = 0;
-
-startBtn.addEventListener('click', () => {
-  startScreen.classList.add('hidden');
-  chatScreen.classList.remove('hidden');
-  showNextMessage();
-});
-
-sendBtn.addEventListener('click', () => {
-  if (msgIndex < messages.length) {
-    const msg = messages[msgIndex];
-    addMessage(msg.sender, msg.text);
-    msgIndex++;
-  }
-});
-
-function addMessage(sender, text) {
-  const messageEl = document.createElement('div');
-  messageEl.classList.add('message');
-  if (sender === "Вы") messageEl.classList.add('user');
-  messageEl.innerText = ${sender}: ${text};
-  chatBox.appendChild(messageEl);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
 function showNextMessage() {
-  if (msgIndex < messages.length) {
-    const msg = messages[msgIndex];
-    addMessage(msg.sender, msg.text);
-    msgIndex++;
+  if (messageIndex < messages.length) {
+    const msg = messages[messageIndex];
+    const div = document.createElement("div");
+    div.textContent = ${msg.name}: ${msg.text};
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    messageIndex++;
   }
 }
+
+sendBtn.addEventListener("click", () => {
+  const text = userInput.value.trim();
+  if (text !== "") {
+    const userMsg = document.createElement("div");
+    userMsg.textContent = Вы: ${text};
+    chatBox.appendChild(userMsg);
+    userInput.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+    setTimeout(showNextMessage, 800);
+  }
+});
+
+startButton.addEventListener("click", () => {
+  startScreen.classList.add("hidden");
+  chatScreen.classList.remove("hidden");
+  setTimeout(showNextMessage, 500);
+});
