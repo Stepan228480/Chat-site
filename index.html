@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ненастоящие — Страшная переписка</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="start-screen" id="startScreen">
+    <h1>Страшные переписки</h1>
+    <h2>Ненастоящие</h2>
+    <button onclick="startChat()">Начать переписку</button>
+  </div>
+
+  <div class="chat-container" id="chatContainer" style="display: none;">
+    <div class="chat-header">
+      <h3>Чат: Ненастоящие</h3>
+    </div>
+    <div class="chat-box" id="chatBox"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Напиши сообщение..." onkeydown="if(event.key === 'Enter') sendMessage()" />
+      <button onclick="sendMessage()">Отправить</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
