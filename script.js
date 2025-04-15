@@ -1,29 +1,24 @@
-function startChat() {
-  document.getElementById("startScreen").style.display = "none";
-  document.getElementById("chatContainer").style.display = "flex";
-
-  addMessage("Никита", "Привет! Это переписка страшная, надеюсь, ты не испугаешься...");
-  addMessage("Аня", "А кто здесь?");
-}
-
-function addMessage(sender, text) {
-  const chatBox = document.getElementById("chatBox");
-  const message = document.createElement("div");
-  message.classList.add("chat-message");
-  message.innerHTML = <strong>${sender}:</strong> ${text};
-  chatBox.appendChild(message);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
 function sendMessage() {
-  const input = document.getElementById("userInput");
-  const text = input.value.trim();
-  if (text !== "") {
-    addMessage("Ты", text);
-    input.value = "";
+  const input = document.getElementById("user-input");
+  const chatBox = document.getElementById("chat-box");
 
-    setTimeout(() => {
-      addMessage("Богдан", "Интересно... ты точно человек?");
-    }, 1000);
+  if (input.value.trim() !== "") {
+    const userMessage = document.createElement("div");
+    userMessage.textContent = "Ты: " + input.value;
+    chatBox.appendChild(userMessage);
+
+    const botMessage = document.createElement("div");
+    botMessage.textContent = "Бот: " + getBotReply(input.value);
+    chatBox.appendChild(botMessage);
+
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
   }
+}
+
+function getBotReply(message) {
+  const lower = message.toLowerCase();
+  if (lower.includes("привет")) return "Привет!";
+  if (lower.includes("как дела")) return "Всё хорошо!";
+  return "Интересно!";
 }
