@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Страшные переписки</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ненастоящие — Страшная переписка</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <div id="intro">
+  <div class="start-screen" id="startScreen">
     <h1>Страшные переписки</h1>
-    <p>Город Картики, на карнавале собрались необычные люди, но кто-то здесь не такой, как все...</p>
-    <button id="startChatButton">Начать переписку</button>
+    <h2>Ненастоящие</h2>
+    <button onclick="startChat()">Начать переписку</button>
   </div>
 
-  <div id="chatWindow" style="display: none;">
-    <h2>Переписка с персонажами</h2>
-    <div id="chatContent">
-      <!-- Здесь будут отображаться сообщения -->
+  <div class="chat-container" id="chatContainer" style="display: none;">
+    <div class="chat-header">
+      <h3>Чат: Ненастоящие</h3>
     </div>
-    <input type="text" id="userMessage" placeholder="Напишите сообщение...">
-    <button id="sendMessageButton">Отправить</button>
+    <div class="chat-box" id="chatBox"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Напиши сообщение..." onkeydown="if(event.key === 'Enter') sendMessage()" />
+      <button onclick="sendMessage()">Отправить</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
